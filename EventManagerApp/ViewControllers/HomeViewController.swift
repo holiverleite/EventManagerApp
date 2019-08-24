@@ -29,13 +29,17 @@ class HomeViewController: UIViewController {
         didSet {
             self.createEventButton.target = self
             self.createEventButton.action = #selector(self.createEventAction)
+            
+            self.createEventButton.tintColor = UIColor.greenLogo
         }
     }
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
-            self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+            self.tableView.delegate = self
+            self.tableView.register(EventTableViewCell.self, forCellReuseIdentifier: String(describing: EventTableViewCell.self))
+            self.tableView.register(UINib(nibName: String(describing: EventTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: EventTableViewCell.self))
         }
     }
     
@@ -79,16 +83,33 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let event = self.events[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = event.title
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EventTableViewCell.self), for: indexPath) as? EventTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.eventTitleLabel.text = event.title
+        cell.dateEventLabel.text = event.date
+        cell.timeEventLabel.text = event.time
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let event = self.events[indexPath.row]
         
+        if let detailEvent = StoryboardUtils.getInitialViewController(storyboardEnum: .Detail) as? DetailViewController {
+            detailEvent.eventDetail = event
+            
+            self.navigationController?.pushViewController(detailEvent, animated: true)
+        }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 77
     }
 }
 

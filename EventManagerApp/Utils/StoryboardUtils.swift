@@ -12,6 +12,7 @@ import UIKit
 class StoryboardUtils {
     public enum Storyboards: String {
         case EventCreation = "EventCreation"
+        case Detail = "Detail"
     }
     
     public static func getInitialViewController(storyboardEnum: StoryboardUtils.Storyboards) -> UIViewController {

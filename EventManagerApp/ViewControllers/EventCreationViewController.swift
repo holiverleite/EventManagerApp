@@ -46,10 +46,13 @@ class EventCreationViewController: UIViewController {
     @IBOutlet weak var createEventButton: UIButton! {
         didSet {
             self.createEventButton.addTarget(self, action: #selector(createEventAction), for: .touchUpInside)
+            self.createEventButton.backgroundColor = UIColor.greenLogo
         }
     }
     
     // MARK: - Variables
+    var eventDetail : Event?
+    var isEditingMode = false
     let picker: UIDatePicker = {
         let datePicker = UIDatePicker()
         
@@ -59,9 +62,21 @@ class EventCreationViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Criar Evento"
-        // Do any additional setup after loading the view.
+
+        if isEditingMode {
+            if let event = self.eventDetail {
+                self.nameTextField.text = event.title
+                self.dateTextField.text = event.date
+                self.timeTextField.text = event.time
+                self.descriptionTextView.text = event.eventDescription
+            }
+            
+            self.createEventButton.setTitle("Salvar", for: .normal)
+            self.title = "Editar Evento"
+        } else {
+            self.createEventButton.setTitle("Criar", for: .normal)
+            self.title = "Criar Evento"
+        }
     }
     
     // MARK: - Methods
@@ -90,7 +105,6 @@ class EventCreationViewController: UIViewController {
         
         self.timeTextField.text = dateFormatter.string(from: self.picker.date)
     }
-    
 }
 
 extension EventCreationViewController: UITextFieldDelegate {

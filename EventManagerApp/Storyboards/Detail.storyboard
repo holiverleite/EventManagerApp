@@ -106,6 +106,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mo3-kH-c0S"/>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="I35-cv-Tvb" id="r2a-xl-6tk"/>
+                        <outlet property="descriptionLabel" destination="a5i-zm-EdI" id="Azg-Ul-K86"/>
+                        <outlet property="editEventButton" destination="27e-GU-9h7" id="rpG-Jf-iYU"/>
+                        <outlet property="timeLabel" destination="3Np-hm-hjQ" id="NNw-Bd-sI7"/>
+                        <outlet property="titleLabel" destination="mgC-jM-bEu" id="PFA-8q-cs4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDe-DX-0fi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
