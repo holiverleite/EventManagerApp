@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LhC-qg-HIZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Event Creation View Controller-->
+        <scene sceneID="FDI-VE-Nu5">
+            <objects>
+                <viewController id="LhC-qg-HIZ" customClass="EventCreationViewController" customModule="EventManagerApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ggo-qq-MkM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nome do Evento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Fg-Kv-0eM">
+                                <rect key="frame" x="30" y="65" width="315" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="P7w-2B-WSV"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Data do evento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bv4-V1-G40">
+                                <rect key="frame" x="30" y="118" width="315" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="lrs-tb-3q8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Hora do evento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kCe-6b-Y9H">
+                                <rect key="frame" x="30" y="171" width="315" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="F6C-wB-KnL"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Descrição" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5I7-hN-yIK">
+                                <rect key="frame" x="30" y="224" width="315" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="8ee-az-Eve"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWB-bK-LXl">
+                                <rect key="frame" x="35" y="602" width="305" height="30"/>
+                                <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Criar "/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Fg-Kv-0eM" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="020-zJ-bN5"/>
+                            <constraint firstItem="Bv4-V1-G40" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="6KE-rO-W3Z"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="bottom" secondItem="CWB-bK-LXl" secondAttribute="bottom" constant="35" id="6x9-kk-cNT"/>
+                            <constraint firstItem="kCe-6b-Y9H" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="Brd-3O-ZdH"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="CWB-bK-LXl" secondAttribute="trailing" constant="35" id="FUN-HL-ziL"/>
+                            <constraint firstItem="5I7-hN-yIK" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="Kk5-Wo-RQ8"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="Bv4-V1-G40" secondAttribute="trailing" constant="30" id="MLV-QT-TNB"/>
+                            <constraint firstItem="5I7-hN-yIK" firstAttribute="top" secondItem="kCe-6b-Y9H" secondAttribute="bottom" constant="27" id="MYW-c1-QdJ"/>
+                            <constraint firstItem="9Fg-Kv-0eM" firstAttribute="top" secondItem="bAg-pz-hJP" secondAttribute="top" constant="45" id="Ukr-lN-nd6"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="9Fg-Kv-0eM" secondAttribute="trailing" constant="30" id="aIq-X8-WrI"/>
+                            <constraint firstItem="kCe-6b-Y9H" firstAttribute="top" secondItem="Bv4-V1-G40" secondAttribute="bottom" constant="27" id="jpX-IT-9Oy"/>
+                            <constraint firstItem="Bv4-V1-G40" firstAttribute="top" secondItem="9Fg-Kv-0eM" secondAttribute="bottom" constant="27" id="kHc-t4-7Sg"/>
+                            <constraint firstItem="CWB-bK-LXl" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="35" id="lEW-y3-RaP"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="kCe-6b-Y9H" secondAttribute="trailing" constant="30" id="prP-y2-w9C"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="5I7-hN-yIK" secondAttribute="trailing" constant="30" id="w4v-Ca-uce"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bAg-pz-hJP"/>
+                    </view>
+                    <connections>
+                        <outlet property="createEventButton" destination="CWB-bK-LXl" id="oNb-Al-Hax"/>
+                        <outlet property="dateTextField" destination="Bv4-V1-G40" id="Gfp-pE-xtj"/>
+                        <outlet property="descriptionTextField" destination="5I7-hN-yIK" id="xYU-IS-zd9"/>
+                        <outlet property="nameTextField" destination="9Fg-Kv-0eM" id="zx8-de-bpy"/>
+                        <outlet property="timeTextField" destination="kCe-6b-Y9H" id="fw3-QO-u7J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yz9-SF-KaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="9"/>
+        </scene>
+    </scenes>
+</document>

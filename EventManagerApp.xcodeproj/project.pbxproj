@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		621E3FFA2311428F00CA34A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E3FF92311428F00CA34A9 /* AppDelegate.swift */; };
-		621E3FFC2311428F00CA34A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E3FFB2311428F00CA34A9 /* ViewController.swift */; };
-		621E3FFF2311428F00CA34A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621E3FFD2311428F00CA34A9 /* Main.storyboard */; };
+		621E3FFC2311428F00CA34A9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E3FFB2311428F00CA34A9 /* HomeViewController.swift */; };
+		621E3FFF2311428F00CA34A9 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621E3FFD2311428F00CA34A9 /* Home.storyboard */; };
 		621E40022311428F00CA34A9 /* EventManagerApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 621E40002311428F00CA34A9 /* EventManagerApp.xcdatamodeld */; };
 		621E40042311429100CA34A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 621E40032311429100CA34A9 /* Assets.xcassets */; };
 		621E40072311429100CA34A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621E40052311429100CA34A9 /* LaunchScreen.storyboard */; };
+		621E400F2311487800CA34A9 /* EventCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621E400E2311487800CA34A9 /* EventCreation.storyboard */; };
+		621E40112311489C00CA34A9 /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E40102311489C00CA34A9 /* EventCreationViewController.swift */; };
+		621E4014231149A800CA34A9 /* StoryboardUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E4013231149A800CA34A9 /* StoryboardUtils.swift */; };
+		621E401623115C6D00CA34A9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E401523115C6D00CA34A9 /* DetailViewController.swift */; };
+		621E401823115C9500CA34A9 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 621E401723115C9500CA34A9 /* Detail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		621E3FF62311428F00CA34A9 /* EventManagerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventManagerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		621E3FF92311428F00CA34A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		621E3FFB2311428F00CA34A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		621E3FFE2311428F00CA34A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		621E3FFB2311428F00CA34A9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		621E3FFE2311428F00CA34A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		621E40012311428F00CA34A9 /* EventManagerApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventManagerApp.xcdatamodel; sourceTree = "<group>"; };
 		621E40032311429100CA34A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		621E40062311429100CA34A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		621E40082311429100CA34A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		621E400E2311487800CA34A9 /* EventCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EventCreation.storyboard; sourceTree = "<group>"; };
+		621E40102311489C00CA34A9 /* EventCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreationViewController.swift; sourceTree = "<group>"; };
+		621E4013231149A800CA34A9 /* StoryboardUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardUtils.swift; sourceTree = "<group>"; };
+		621E401523115C6D00CA34A9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		621E401723115C9500CA34A9 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +66,28 @@
 		621E3FF82311428F00CA34A9 /* EventManagerApp */ = {
 			isa = PBXGroup;
 			children = (
+				621E40122311495300CA34A9 /* Utils */,
 				621E3FF92311428F00CA34A9 /* AppDelegate.swift */,
-				621E3FFB2311428F00CA34A9 /* ViewController.swift */,
-				621E3FFD2311428F00CA34A9 /* Main.storyboard */,
-				621E40032311429100CA34A9 /* Assets.xcassets */,
+				621E3FFB2311428F00CA34A9 /* HomeViewController.swift */,
+				621E40102311489C00CA34A9 /* EventCreationViewController.swift */,
+				621E401523115C6D00CA34A9 /* DetailViewController.swift */,
+				621E3FFD2311428F00CA34A9 /* Home.storyboard */,
+				621E400E2311487800CA34A9 /* EventCreation.storyboard */,
+				621E401723115C9500CA34A9 /* Detail.storyboard */,
 				621E40052311429100CA34A9 /* LaunchScreen.storyboard */,
+				621E40032311429100CA34A9 /* Assets.xcassets */,
 				621E40082311429100CA34A9 /* Info.plist */,
 				621E40002311428F00CA34A9 /* EventManagerApp.xcdatamodeld */,
 			);
 			path = EventManagerApp;
+			sourceTree = "<group>";
+		};
+		621E40122311495300CA34A9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				621E4013231149A800CA34A9 /* StoryboardUtils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +150,9 @@
 			files = (
 				621E40072311429100CA34A9 /* LaunchScreen.storyboard in Resources */,
 				621E40042311429100CA34A9 /* Assets.xcassets in Resources */,
-				621E3FFF2311428F00CA34A9 /* Main.storyboard in Resources */,
+				621E400F2311487800CA34A9 /* EventCreation.storyboard in Resources */,
+				621E401823115C9500CA34A9 /* Detail.storyboard in Resources */,
+				621E3FFF2311428F00CA34A9 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				621E40022311428F00CA34A9 /* EventManagerApp.xcdatamodeld in Sources */,
-				621E3FFC2311428F00CA34A9 /* ViewController.swift in Sources */,
+				621E4014231149A800CA34A9 /* StoryboardUtils.swift in Sources */,
+				621E3FFC2311428F00CA34A9 /* HomeViewController.swift in Sources */,
+				621E401623115C6D00CA34A9 /* DetailViewController.swift in Sources */,
+				621E40112311489C00CA34A9 /* EventCreationViewController.swift in Sources */,
 				621E3FFA2311428F00CA34A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,12 +175,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		621E3FFD2311428F00CA34A9 /* Main.storyboard */ = {
+		621E3FFD2311428F00CA34A9 /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				621E3FFE2311428F00CA34A9 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 		621E40052311429100CA34A9 /* LaunchScreen.storyboard */ = {
@@ -287,6 +315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 397H5GMTQJ;
 				INFOPLIST_FILE = EventManagerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -304,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 397H5GMTQJ;
 				INFOPLIST_FILE = EventManagerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
