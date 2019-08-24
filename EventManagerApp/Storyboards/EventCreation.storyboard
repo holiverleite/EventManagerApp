@@ -45,21 +45,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Descrição" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5I7-hN-yIK">
-                                <rect key="frame" x="30" y="224" width="315" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="8ee-az-Eve"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWB-bK-LXl">
                                 <rect key="frame" x="35" y="602" width="305" height="30"/>
                                 <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Criar "/>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uz4-sA-owj">
+                                <rect key="frame" x="30" y="258" width="315" height="128"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="eTX-WJ-9eM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detalhes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrc-J4-ie5">
+                                <rect key="frame" x="30" y="227" width="315" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -67,24 +73,29 @@
                             <constraint firstItem="Bv4-V1-G40" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="6KE-rO-W3Z"/>
                             <constraint firstItem="bAg-pz-hJP" firstAttribute="bottom" secondItem="CWB-bK-LXl" secondAttribute="bottom" constant="35" id="6x9-kk-cNT"/>
                             <constraint firstItem="kCe-6b-Y9H" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="Brd-3O-ZdH"/>
+                            <constraint firstItem="Uz4-sA-owj" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="DuX-4x-OYR"/>
                             <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="CWB-bK-LXl" secondAttribute="trailing" constant="35" id="FUN-HL-ziL"/>
-                            <constraint firstItem="5I7-hN-yIK" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="Kk5-Wo-RQ8"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="Uz4-sA-owj" secondAttribute="trailing" constant="30" id="Ff6-Vu-i20"/>
                             <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="Bv4-V1-G40" secondAttribute="trailing" constant="30" id="MLV-QT-TNB"/>
-                            <constraint firstItem="5I7-hN-yIK" firstAttribute="top" secondItem="kCe-6b-Y9H" secondAttribute="bottom" constant="27" id="MYW-c1-QdJ"/>
                             <constraint firstItem="9Fg-Kv-0eM" firstAttribute="top" secondItem="bAg-pz-hJP" secondAttribute="top" constant="45" id="Ukr-lN-nd6"/>
+                            <constraint firstItem="zrc-J4-ie5" firstAttribute="top" secondItem="kCe-6b-Y9H" secondAttribute="bottom" constant="30" id="VxW-Si-zOc"/>
                             <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="9Fg-Kv-0eM" secondAttribute="trailing" constant="30" id="aIq-X8-WrI"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="Uz4-sA-owj" secondAttribute="trailing" constant="30" id="dvX-nf-Uhj"/>
+                            <constraint firstItem="Uz4-sA-owj" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="e2D-XV-vKv"/>
                             <constraint firstItem="kCe-6b-Y9H" firstAttribute="top" secondItem="Bv4-V1-G40" secondAttribute="bottom" constant="27" id="jpX-IT-9Oy"/>
                             <constraint firstItem="Bv4-V1-G40" firstAttribute="top" secondItem="9Fg-Kv-0eM" secondAttribute="bottom" constant="27" id="kHc-t4-7Sg"/>
                             <constraint firstItem="CWB-bK-LXl" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="35" id="lEW-y3-RaP"/>
+                            <constraint firstItem="zrc-J4-ie5" firstAttribute="leading" secondItem="bAg-pz-hJP" secondAttribute="leading" constant="30" id="n7C-ii-iAE"/>
                             <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="kCe-6b-Y9H" secondAttribute="trailing" constant="30" id="prP-y2-w9C"/>
-                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="5I7-hN-yIK" secondAttribute="trailing" constant="30" id="w4v-Ca-uce"/>
+                            <constraint firstItem="Uz4-sA-owj" firstAttribute="top" secondItem="zrc-J4-ie5" secondAttribute="bottom" constant="10" id="ump-P2-Ajp"/>
+                            <constraint firstItem="bAg-pz-hJP" firstAttribute="trailing" secondItem="zrc-J4-ie5" secondAttribute="trailing" constant="30" id="vWh-ol-Gsr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bAg-pz-hJP"/>
                     </view>
                     <connections>
                         <outlet property="createEventButton" destination="CWB-bK-LXl" id="oNb-Al-Hax"/>
                         <outlet property="dateTextField" destination="Bv4-V1-G40" id="Gfp-pE-xtj"/>
-                        <outlet property="descriptionTextField" destination="5I7-hN-yIK" id="xYU-IS-zd9"/>
+                        <outlet property="descriptionTextView" destination="Uz4-sA-owj" id="wWK-dC-Suu"/>
                         <outlet property="nameTextField" destination="9Fg-Kv-0eM" id="zx8-de-bpy"/>
                         <outlet property="timeTextField" destination="kCe-6b-Y9H" id="fw3-QO-u7J"/>
                     </connections>

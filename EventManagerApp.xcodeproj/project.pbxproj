@@ -66,15 +66,10 @@
 		621E3FF82311428F00CA34A9 /* EventManagerApp */ = {
 			isa = PBXGroup;
 			children = (
-				621E40122311495300CA34A9 /* Utils */,
 				621E3FF92311428F00CA34A9 /* AppDelegate.swift */,
-				621E3FFB2311428F00CA34A9 /* HomeViewController.swift */,
-				621E40102311489C00CA34A9 /* EventCreationViewController.swift */,
-				621E401523115C6D00CA34A9 /* DetailViewController.swift */,
-				621E3FFD2311428F00CA34A9 /* Home.storyboard */,
-				621E400E2311487800CA34A9 /* EventCreation.storyboard */,
-				621E401723115C9500CA34A9 /* Detail.storyboard */,
-				621E40052311429100CA34A9 /* LaunchScreen.storyboard */,
+				621E401A231162D000CA34A9 /* ViewControllers */,
+				621E4019231162C400CA34A9 /* Storyboards */,
+				621E40122311495300CA34A9 /* Utils */,
 				621E40032311429100CA34A9 /* Assets.xcassets */,
 				621E40082311429100CA34A9 /* Info.plist */,
 				621E40002311428F00CA34A9 /* EventManagerApp.xcdatamodeld */,
@@ -88,6 +83,27 @@
 				621E4013231149A800CA34A9 /* StoryboardUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		621E4019231162C400CA34A9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				621E3FFD2311428F00CA34A9 /* Home.storyboard */,
+				621E400E2311487800CA34A9 /* EventCreation.storyboard */,
+				621E401723115C9500CA34A9 /* Detail.storyboard */,
+				621E40052311429100CA34A9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		621E401A231162D000CA34A9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				621E3FFB2311428F00CA34A9 /* HomeViewController.swift */,
+				621E40102311489C00CA34A9 /* EventCreationViewController.swift */,
+				621E401523115C6D00CA34A9 /* DetailViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
