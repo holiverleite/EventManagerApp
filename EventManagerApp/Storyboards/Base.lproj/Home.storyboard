@@ -57,6 +57,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createEventButton" destination="A9k-pB-vMb" id="Mg0-iu-ARo"/>
+                        <outlet property="emptyStateView" destination="Jpm-1C-ckG" id="UH4-KS-NWk"/>
+                        <outlet property="tableView" destination="62f-K5-or4" id="Ozn-9m-KyG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
