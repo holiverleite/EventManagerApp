@@ -19,8 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27e-GU-9h7">
-                                <rect key="frame" x="35" y="602" width="305" height="30"/>
+                                <rect key="frame" x="10" y="615" width="355" height="42"/>
                                 <color key="backgroundColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="ekG-pO-dhu"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Editar"/>
                             </button>
@@ -94,14 +97,14 @@
                             <constraint firstItem="gfk-Jd-cve" firstAttribute="top" secondItem="Mo3-kH-c0S" secondAttribute="top" constant="45" id="Ua3-vS-Zk0"/>
                             <constraint firstItem="Hfe-b2-fCh" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="30" id="Vpw-Wp-wnF"/>
                             <constraint firstItem="mgC-jM-bEu" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="30" id="WFf-9y-OE9"/>
-                            <constraint firstItem="Mo3-kH-c0S" firstAttribute="trailing" secondItem="27e-GU-9h7" secondAttribute="trailing" constant="35" id="ZSc-VJ-rtr"/>
+                            <constraint firstItem="Mo3-kH-c0S" firstAttribute="trailing" secondItem="27e-GU-9h7" secondAttribute="trailing" constant="10" id="ZSc-VJ-rtr"/>
                             <constraint firstItem="gfk-Jd-cve" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="30" id="bQ0-Fb-lCN"/>
                             <constraint firstItem="mgC-jM-bEu" firstAttribute="top" secondItem="gfk-Jd-cve" secondAttribute="bottom" constant="10" id="cxh-P4-gVd"/>
-                            <constraint firstItem="Mo3-kH-c0S" firstAttribute="bottom" secondItem="27e-GU-9h7" secondAttribute="bottom" constant="35" id="dDG-Pk-D2I"/>
+                            <constraint firstItem="Mo3-kH-c0S" firstAttribute="bottom" secondItem="27e-GU-9h7" secondAttribute="bottom" constant="10" id="dDG-Pk-D2I"/>
                             <constraint firstItem="Mo3-kH-c0S" firstAttribute="trailing" secondItem="a6m-Ad-0qj" secondAttribute="trailing" constant="30" id="eKX-Vy-on6"/>
                             <constraint firstItem="NSJ-r0-iTb" firstAttribute="top" secondItem="mgC-jM-bEu" secondAttribute="bottom" constant="25" id="j6w-r3-v6n"/>
                             <constraint firstItem="3Np-hm-hjQ" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="30" id="r6U-FQ-Omh"/>
-                            <constraint firstItem="27e-GU-9h7" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="35" id="stP-aI-E9T"/>
+                            <constraint firstItem="27e-GU-9h7" firstAttribute="leading" secondItem="Mo3-kH-c0S" secondAttribute="leading" constant="10" id="stP-aI-E9T"/>
                             <constraint firstItem="Mo3-kH-c0S" firstAttribute="trailing" secondItem="I35-cv-Tvb" secondAttribute="trailing" constant="30" id="wjz-JR-cSJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mo3-kH-c0S"/>

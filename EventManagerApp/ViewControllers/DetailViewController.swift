@@ -18,10 +18,29 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            self.titleLabel.textColor = UIColor.greenLogo
+        }
+    }
+    
+    @IBOutlet weak var dateLabel: UILabel! {
+        didSet {
+            self.dateLabel.textColor = UIColor.greenLogo
+        }
+    }
+    
+    @IBOutlet weak var timeLabel: UILabel! {
+        didSet {
+            self.timeLabel.textColor = UIColor.greenLogo
+        }
+    }
+    
+    @IBOutlet weak var descriptionLabel: UILabel! {
+        didSet {
+            self.descriptionLabel.textColor = UIColor.greenLogo
+        }
+    }
     
     // MARK: - Variables
     var eventDetail: Event?

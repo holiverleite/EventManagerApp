@@ -29,7 +29,6 @@ class HomeViewController: UIViewController {
         didSet {
             self.createEventButton.target = self
             self.createEventButton.action = #selector(self.createEventAction)
-            
             self.createEventButton.tintColor = UIColor.greenLogo
         }
     }
@@ -40,6 +39,7 @@ class HomeViewController: UIViewController {
             self.tableView.delegate = self
             self.tableView.register(EventTableViewCell.self, forCellReuseIdentifier: String(describing: EventTableViewCell.self))
             self.tableView.register(UINib(nibName: String(describing: EventTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: EventTableViewCell.self))
+            self.tableView.separatorStyle = .none
         }
     }
     
@@ -100,7 +100,6 @@ extension HomeViewController: UITableViewDataSource {
         
         if let detailEvent = StoryboardUtils.getInitialViewController(storyboardEnum: .Detail) as? DetailViewController {
             detailEvent.eventDetail = event
-            
             self.navigationController?.pushViewController(detailEvent, animated: true)
         }
     }

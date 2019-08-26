@@ -103,10 +103,18 @@ class EventCreationViewController: UIViewController {
             let eventDescription = self.descriptionTextView.text, !eventDescription.isEmpty {
             let event = Event(title, date, time, eventDescription)
             
-            self.delegate?.eventCreationData(eventData: event)
-            // go back to Home after create a Event
-            self.navigationController?.popViewController(animated: true)
-            // Implement to send data to Firebase;
+            if let event = self.eventDetail {
+                // UPDATE EVENT
+                // FIXME: - firebase call to update
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                // CREATE EVENT
+                // Implement to send data to Firebase;
+                // FIXME: - firebase call to save
+                self.delegate?.eventCreationData(eventData: event)
+                // go back to Home after create a Event
+                self.navigationController?.popViewController(animated: true)
+            }
         } else {
             let alert = UIAlertController(title: "Atenção", message: "Todos os campos são obrigattótios!", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
