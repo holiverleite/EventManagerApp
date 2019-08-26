@@ -58,7 +58,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        (self.events.count > 0) ? (self.emptyStateView.isHidden = true) : (self.emptyStateView.isHidden = false)
+        self.verifyHomeViewState()
         self.tableView.reloadData()
         // Update tableView always when appear
     }
@@ -69,6 +69,10 @@ class HomeViewController: UIViewController {
             eventCreationViewController.delegate = self
             self.navigationController?.pushViewController(eventCreationViewController, animated: true)
         }
+    }
+    
+    func verifyHomeViewState() {
+        (self.events.count > 0) ? (self.emptyStateView.isHidden = true) : (self.emptyStateView.isHidden = false)
     }
 }
 
@@ -98,6 +102,15 @@ extension HomeViewController: UITableViewDataSource {
             detailEvent.eventDetail = event
             
             self.navigationController?.pushViewController(detailEvent, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.events.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .bottom)
+            
+            self.verifyHomeViewState()
         }
     }
 }

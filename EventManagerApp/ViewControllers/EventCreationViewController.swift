@@ -23,6 +23,8 @@ class EventCreationViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField! {
         didSet {
             self.nameTextField.delegate = self
+            self.nameTextField.borderStyle = .roundedRect
+            self.nameTextField.layer.borderColor = UIColor.greenLogo.cgColor
         }
     }
     
@@ -33,6 +35,8 @@ class EventCreationViewController: UIViewController {
             self.picker.datePickerMode = .date
             self.picker.addTarget(self, action: #selector(pickerValueChanged), for: UIControl.Event.valueChanged)
             self.dateTextField.inputView = self.picker
+            self.dateTextField.borderStyle = .roundedRect
+            self.dateTextField.layer.borderColor = UIColor.greenLogo.cgColor
         }
     }
     
@@ -43,12 +47,14 @@ class EventCreationViewController: UIViewController {
             self.picker.datePickerMode = .time
             self.picker.addTarget(self, action: #selector(pickerValueChanged), for: UIControl.Event.valueChanged)
             self.timeTextField.inputView = self.picker
+            self.timeTextField.borderStyle = .roundedRect
+            self.timeTextField.layer.borderColor = UIColor.greenLogo.cgColor
         }
     }
     
     @IBOutlet weak var descriptionTextView: UITextView! {
         didSet {
-            
+            self.descriptionTextView.layer.borderColor = UIColor.greenLogo.cgColor
         }
     }
     
@@ -91,13 +97,22 @@ class EventCreationViewController: UIViewController {
     
     // MARK: - Methods
     @objc func createEventAction() {
-        if let title = self.nameTextField.text, let date = self.dateTextField.text, let time = self.timeTextField.text, let eventDescription = self.descriptionTextView.text {
+        if let title = self.nameTextField.text, !title.isEmpty,
+            let date = self.dateTextField.text, !date.isEmpty,
+            let time = self.timeTextField.text, !time.isEmpty,
+            let eventDescription = self.descriptionTextView.text, !eventDescription.isEmpty {
             let event = Event(title, date, time, eventDescription)
             
             self.delegate?.eventCreationData(eventData: event)
+            // go back to Home after create a Event
             self.navigationController?.popViewController(animated: true)
+            // Implement to send data to Firebase;
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "Todos os campos são obrigattótios!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
         }
-        // Implement to send data to Firebase;
     }
     
     @objc func pickerValueChanged(sender: UIDatePicker) {
