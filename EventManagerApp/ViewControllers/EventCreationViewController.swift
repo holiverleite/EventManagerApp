@@ -103,11 +103,13 @@ class EventCreationViewController: UIViewController {
             let eventDescription = self.descriptionTextView.text, !eventDescription.isEmpty {
             let event = Event(title, date, time, eventDescription)
             
-            if let event = self.eventDetail {
+            if let _ = self.eventDetail {
                 // UPDATE EVENT
                 // FIXME: - firebase call to update
                 self.navigationController?.popToRootViewController(animated: true)
             } else {
+                
+                let _ = CoreDataService.save(event: event)
                 // CREATE EVENT
                 // Implement to send data to Firebase;
                 // FIXME: - firebase call to save

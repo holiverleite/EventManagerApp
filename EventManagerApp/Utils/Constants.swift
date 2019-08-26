@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct ImageConstants {
+    static let BackButtonIcon = UIImage(named: "back_button_icon")
+}
+
 extension UIColor {
     public static let greenLogo = UIColor(red: 103/255, green: 166/255, blue: 175/255, alpha: 1)
     

@@ -53,6 +53,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Load all events from CoreData
+        self.events = CoreDataService.fetchEvents()
+        
+        let backButton = UIBarButtonItem()
+        backButton.tintColor = UIColor.greenLogo
+        self.navigationItem.backBarButtonItem = backButton
+
         self.title = "Meus Eventos"
     }
     
@@ -100,13 +107,24 @@ extension HomeViewController: UITableViewDataSource {
         let event = self.events[indexPath.row]
         
         if let detailEvent = StoryboardUtils.getInitialViewController(storyboardEnum: .Detail) as? DetailViewController {
-            detailEvent.eventDetail = event
+            guard let title = event.value(forKey: "title") as? String,
+                let date = event.value(forKey: "date") as? String,
+                let time = event.value(forKey: "time") as? String,
+                let eventDescription = event.value(forKey: "eventDescription") as? String else {
+                    return
+            }
+            
+            let eventObject = Event(title, date, time, eventDescription)
+            detailEvent.eventDetail = eventObject
             self.navigationController?.pushViewController(detailEvent, animated: true)
         }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let event = self.events[indexPath.row]
+            CoreDataService.deleteFromDataBase(object: event)
+            
             self.events.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             
@@ -123,7 +141,8 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: EventCreationDelegate {
     func eventCreationData(eventData: Event) {
-        self.events.append(eventData)
+        self.events = CoreDataService.fetchEvents()
+        self.tableView.reloadData()
     }
 }
 
