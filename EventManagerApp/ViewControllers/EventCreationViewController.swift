@@ -8,9 +8,18 @@
 
 import UIKit
 
+protocol EventCreationDelegate {
+    func eventCreationData(eventData : Event)
+}
+
 class EventCreationViewController: UIViewController {
     
     // MARK: - IBOutlets
+    @IBOutlet var mainView: UIView! {
+        didSet {
+            self.mainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        }
+    }
     @IBOutlet weak var nameTextField: UITextField! {
         didSet {
             self.nameTextField.delegate = self
@@ -51,6 +60,7 @@ class EventCreationViewController: UIViewController {
     }
     
     // MARK: - Variables
+    var delegate: EventCreationDelegate?
     var eventDetail : Event?
     var isEditingMode = false
     let picker: UIDatePicker = {
@@ -81,6 +91,12 @@ class EventCreationViewController: UIViewController {
     
     // MARK: - Methods
     @objc func createEventAction() {
+        if let title = self.nameTextField.text, let date = self.dateTextField.text, let time = self.timeTextField.text, let eventDescription = self.descriptionTextView.text {
+            let event = Event(title, date, time, eventDescription)
+            
+            self.delegate?.eventCreationData(eventData: event)
+            self.navigationController?.popViewController(animated: true)
+        }
         // Implement to send data to Firebase;
     }
     
@@ -104,6 +120,10 @@ class EventCreationViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         
         self.timeTextField.text = dateFormatter.string(from: self.picker.date)
+    }
+    
+    @objc private func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
 

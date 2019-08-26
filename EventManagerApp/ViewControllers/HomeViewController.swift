@@ -52,26 +52,21 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // *** Just to testing populate of tableview ***
-        for _ in (1...15) {
-            let event = Event("Aniversario", "15/12/2019", "19:00", "São Carlos - Casa do Haroldo")
-            self.events.append(event)
-        }
-        (self.events.count > 0) ? (self.emptyStateView.isHidden = true) : (self.emptyStateView.isHidden = false)
-        // **************************************
-        
         self.title = "Meus Eventos"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        (self.events.count > 0) ? (self.emptyStateView.isHidden = true) : (self.emptyStateView.isHidden = false)
+        self.tableView.reloadData()
         // Update tableView always when appear
     }
     
     // MARK: - Methods
     @objc private func createEventAction() {
         if let eventCreationViewController = StoryboardUtils.getInitialViewController(storyboardEnum: .EventCreation) as? EventCreationViewController {
+            eventCreationViewController.delegate = self
             self.navigationController?.pushViewController(eventCreationViewController, animated: true)
         }
     }
@@ -110,6 +105,12 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
+    }
+}
+
+extension HomeViewController: EventCreationDelegate {
+    func eventCreationData(eventData: Event) {
+        self.events.append(eventData)
     }
 }
 

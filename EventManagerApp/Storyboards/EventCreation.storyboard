@@ -96,6 +96,7 @@
                         <outlet property="createEventButton" destination="CWB-bK-LXl" id="oNb-Al-Hax"/>
                         <outlet property="dateTextField" destination="Bv4-V1-G40" id="Gfp-pE-xtj"/>
                         <outlet property="descriptionTextView" destination="Uz4-sA-owj" id="wWK-dC-Suu"/>
+                        <outlet property="mainView" destination="ggo-qq-MkM" id="Yso-WR-QdI"/>
                         <outlet property="nameTextField" destination="9Fg-Kv-0eM" id="zx8-de-bpy"/>
                         <outlet property="timeTextField" destination="kCe-6b-Y9H" id="fw3-QO-u7J"/>
                     </connections>
