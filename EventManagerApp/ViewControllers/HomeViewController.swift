@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 struct Event {
     var title: String?
@@ -46,7 +47,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var emptyStateView: UIView!
     
     // MARK: - Variables
-    var events: [Event] = []
+    var events: [NSManagedObject] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -88,9 +89,9 @@ extension HomeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.eventTitleLabel.text = event.title
-        cell.dateEventLabel.text = event.date
-        cell.timeEventLabel.text = event.time
+        cell.eventTitleLabel.text = event.value(forKey: "title") as? String
+        cell.dateEventLabel.text = event.value(forKey: "date") as? String
+        cell.timeEventLabel.text = event.value(forKey: "time") as? String
         
         return cell
     }

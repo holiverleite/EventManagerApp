@@ -21,6 +21,7 @@
 		621E401D23119C4E00CA34A9 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E401B23119C4E00CA34A9 /* EventTableViewCell.swift */; };
 		621E401E23119C4E00CA34A9 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */; };
 		621E40212311F63D00CA34A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E40202311F63D00CA34A9 /* Constants.swift */; };
+		9436219D231460E800F34501 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436219C231460E800F34501 /* CoreDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		621E401B23119C4E00CA34A9 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		621E40202311F63D00CA34A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9436219C231460E800F34501 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				621E4013231149A800CA34A9 /* StoryboardUtils.swift */,
 				621E40202311F63D00CA34A9 /* Constants.swift */,
+				9436219C231460E800F34501 /* CoreDataService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				621E401D23119C4E00CA34A9 /* EventTableViewCell.swift in Sources */,
 				621E40112311489C00CA34A9 /* EventCreationViewController.swift in Sources */,
 				621E3FFA2311428F00CA34A9 /* AppDelegate.swift in Sources */,
+				9436219D231460E800F34501 /* CoreDataService.swift in Sources */,
 				621E40212311F63D00CA34A9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
