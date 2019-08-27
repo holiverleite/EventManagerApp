@@ -50,35 +50,44 @@ class HomeViewController: UIViewController {
     
     // MARK: - Variables
     var events: [NSManagedObject] = []
+    var listener: UInt? = nil
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.listener = Database.database().reference().observe(.childChanged, with: { (snapshot) in
+//          Load all events from CoreData
+            self.events.removeAll()
+            self.events = CoreDataService.fetchEvents()
+            self.tableView.reloadData()
+        })
         
-        Database.database().reference().queryOrdered(byChild: "events").observe(.value) { (snapshot) in
-            guard let dict = snapshot.value as? [String: Any] else {
-                return
-            }
-            
-            if let elements = dict["events"] as? [String:Any] {
-                for (_,value) in elements {
-                    if let eventDict = value as? [String:String] {
-                        guard let id = eventDict["id"],
-                            let title = eventDict["title"],
-                            let date = eventDict["date"],
-                            let time = eventDict["time"],
-                            let descrip = eventDict["eventDescription"] else {
-                                return
+        if CoreDataService.entityIsEmpty() {
+            Database.database().reference().queryOrdered(byChild: "events").observe(.value) { (snapshot) in
+                guard let dict = snapshot.value as? [String: Any] else {
+                    return
+                }
+                
+                if let elements = dict["events"] as? [String:Any] {
+                    for (_,value) in elements {
+                        if let eventDict = value as? [String:String] {
+                            guard let id = eventDict["id"],
+                                let title = eventDict["title"],
+                                let date = eventDict["date"],
+                                let time = eventDict["time"],
+                                let descrip = eventDict["eventDescription"] else {
+                                    return
+                            }
+                            var event = Event(title, date, time, descrip)
+                            event.id = id
+                            
+                            CoreDataService.save(event: event)
                         }
-                        var event = Event(title, date, time, descrip)
-                        event.id = id
-                        
-                        CoreDataService.save(event: event)
-                        
-                        self.events.removeAll()
-                        self.events = CoreDataService.fetchEvents()
                     }
+                    self.events.removeAll()
+                    self.events = CoreDataService.fetchEvents()
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -92,10 +101,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Load all events from CoreData
-        self.events.removeAll()
-        self.events = CoreDataService.fetchEvents()
         
         self.verifyHomeViewState()
         self.tableView.reloadData()

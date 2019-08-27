@@ -103,6 +103,7 @@ class EventCreationViewController: UIViewController {
             if let _ = self.eventDetail {
                 // Edit Event in Firebase and Coredata
                 var dict = [String:Any]()
+                dict["id"] = self.eventDetail?.id
                 dict["title"] = event.title
                 dict["time"] = event.time
                 dict["date"] = event.date

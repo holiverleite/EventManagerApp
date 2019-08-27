@@ -88,4 +88,22 @@ class CoreDataService {
             }
         }
     }
+    
+    static func entityIsEmpty() -> Bool {
+        if let context = self.getContext() {
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EventCoreData")
+            
+            do {
+                let events = try context.fetch(fetchRequest)
+                if events.count > 0 {
+                    return false
+                } else {
+                    return true
+                }
+            } catch let error as NSError {
+                return true
+            }
+        }
+        return true
+    }
 }
