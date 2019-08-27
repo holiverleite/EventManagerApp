@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 struct Event {
-    var title: String?
-    var date: String?
-    var time: String?
+    var id: String = ""
+    var title: String = ""
+    var date: String = ""
+    var time: String = ""
     var eventDescription: String?
     
     init(_ title: String, _ date: String, _ time: String, _ description: String) {
@@ -53,8 +55,33 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load all events from CoreData
-        self.events = CoreDataService.fetchEvents()
+        
+        Database.database().reference().queryOrdered(byChild: "events").observe(.value) { (snapshot) in
+            guard let dict = snapshot.value as? [String: Any] else {
+                return
+            }
+            
+            if let elements = dict["events"] as? [String:Any] {
+                for (_,value) in elements {
+                    if let eventDict = value as? [String:String] {
+                        guard let id = eventDict["id"],
+                            let title = eventDict["title"],
+                            let date = eventDict["date"],
+                            let time = eventDict["time"],
+                            let descrip = eventDict["eventDescription"] else {
+                                return
+                        }
+                        var event = Event(title, date, time, descrip)
+                        event.id = id
+                        
+                        CoreDataService.save(event: event)
+                        
+                        self.events.removeAll()
+                        self.events = CoreDataService.fetchEvents()
+                    }
+                }
+            }
+        }
         
         let backButton = UIBarButtonItem()
         backButton.tintColor = UIColor.greenLogo
@@ -66,6 +93,10 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Load all events from CoreData
+        self.events.removeAll()
+        self.events = CoreDataService.fetchEvents()
+        
         self.verifyHomeViewState()
         self.tableView.reloadData()
         // Update tableView always when appear
@@ -74,7 +105,6 @@ class HomeViewController: UIViewController {
     // MARK: - Methods
     @objc private func createEventAction() {
         if let eventCreationViewController = StoryboardUtils.getInitialViewController(storyboardEnum: .EventCreation) as? EventCreationViewController {
-            eventCreationViewController.delegate = self
             self.navigationController?.pushViewController(eventCreationViewController, animated: true)
         }
     }
@@ -108,13 +138,15 @@ extension HomeViewController: UITableViewDataSource {
         
         if let detailEvent = StoryboardUtils.getInitialViewController(storyboardEnum: .Detail) as? DetailViewController {
             guard let title = event.value(forKey: "title") as? String,
+                let id = event.value(forKey: "id") as? String,
                 let date = event.value(forKey: "date") as? String,
                 let time = event.value(forKey: "time") as? String,
                 let eventDescription = event.value(forKey: "eventDescription") as? String else {
                     return
             }
             
-            let eventObject = Event(title, date, time, eventDescription)
+            var eventObject = Event(title, date, time, eventDescription)
+            eventObject.id = id
             detailEvent.eventDetail = eventObject
             self.navigationController?.pushViewController(detailEvent, animated: true)
         }
@@ -123,12 +155,15 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let event = self.events[indexPath.row]
-            CoreDataService.deleteFromDataBase(object: event)
-            
-            self.events.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .bottom)
-            
-            self.verifyHomeViewState()
+            if let eventId = event.value(forKey: "id") as? String {
+                Database.database().reference().child("events").child(eventId).removeValue { error, _ in
+                    CoreDataService.deleteFromDataBase(object: event)
+                    
+                    self.events.remove(at: indexPath.row)
+                    self.tableView.deleteRows(at: [indexPath], with: .bottom)
+                    self.verifyHomeViewState()
+                }
+            }
         }
     }
 }
@@ -136,13 +171,6 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
-    }
-}
-
-extension HomeViewController: EventCreationDelegate {
-    func eventCreationData(eventData: Event) {
-        self.events = CoreDataService.fetchEvents()
-        self.tableView.reloadData()
     }
 }
 

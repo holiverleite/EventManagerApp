@@ -22,6 +22,8 @@
 		621E401E23119C4E00CA34A9 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */; };
 		621E40212311F63D00CA34A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E40202311F63D00CA34A9 /* Constants.swift */; };
 		9436219D231460E800F34501 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436219C231460E800F34501 /* CoreDataService.swift */; };
+		94F821422315460600DE93D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F821412315460600DE93D2 /* GoogleService-Info.plist */; };
+		C20BB02E0E69B631EB32E4AB /* Pods_EventManagerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2015E4A32C1EC13766A3D0 /* Pods_EventManagerApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,10 @@
 		621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		621E40202311F63D00CA34A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9436219C231460E800F34501 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		94F821412315460600DE93D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		B764D8F6E2A33F58BF363015 /* Pods-EventManagerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventManagerApp.release.xcconfig"; path = "Target Support Files/Pods-EventManagerApp/Pods-EventManagerApp.release.xcconfig"; sourceTree = "<group>"; };
+		BF2015E4A32C1EC13766A3D0 /* Pods_EventManagerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventManagerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D29A8E118B5E33AF766BFFBE /* Pods-EventManagerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventManagerApp.debug.xcconfig"; path = "Target Support Files/Pods-EventManagerApp/Pods-EventManagerApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20BB02E0E69B631EB32E4AB /* Pods_EventManagerApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +67,8 @@
 			children = (
 				621E3FF82311428F00CA34A9 /* EventManagerApp */,
 				621E3FF72311428F00CA34A9 /* Products */,
+				E814B0D67A37F1ED8401A2EC /* Pods */,
+				92C55E27D363DFA706499FCD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +91,7 @@
 				621E40032311429100CA34A9 /* Assets.xcassets */,
 				621E40082311429100CA34A9 /* Info.plist */,
 				621E40002311428F00CA34A9 /* EventManagerApp.xcdatamodeld */,
+				94F821412315460600DE93D2 /* GoogleService-Info.plist */,
 			);
 			path = EventManagerApp;
 			sourceTree = "<group>";
@@ -126,6 +136,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		92C55E27D363DFA706499FCD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF2015E4A32C1EC13766A3D0 /* Pods_EventManagerApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E814B0D67A37F1ED8401A2EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D29A8E118B5E33AF766BFFBE /* Pods-EventManagerApp.debug.xcconfig */,
+				B764D8F6E2A33F58BF363015 /* Pods-EventManagerApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 621E400B2311429100CA34A9 /* Build configuration list for PBXNativeTarget "EventManagerApp" */;
 			buildPhases = (
+				CE02501D00BA63F372EFE496 /* [CP] Check Pods Manifest.lock */,
 				621E3FF22311428F00CA34A9 /* Sources */,
 				621E3FF32311428F00CA34A9 /* Frameworks */,
 				621E3FF42311428F00CA34A9 /* Resources */,
+				1C8505E25465D12BA1FE7306 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,10 +219,62 @@
 				621E400F2311487800CA34A9 /* EventCreation.storyboard in Resources */,
 				621E401823115C9500CA34A9 /* Detail.storyboard in Resources */,
 				621E3FFF2311428F00CA34A9 /* Home.storyboard in Resources */,
+				94F821422315460600DE93D2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1C8505E25465D12BA1FE7306 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EventManagerApp/Pods-EventManagerApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EventManagerApp/Pods-EventManagerApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE02501D00BA63F372EFE496 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EventManagerApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		621E3FF22311428F00CA34A9 /* Sources */ = {
@@ -352,6 +433,7 @@
 		};
 		621E400C2311429100CA34A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D29A8E118B5E33AF766BFFBE /* Pods-EventManagerApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -370,6 +452,7 @@
 		};
 		621E400D2311429100CA34A9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B764D8F6E2A33F58BF363015 /* Pods-EventManagerApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

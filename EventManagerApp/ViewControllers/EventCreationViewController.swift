@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-protocol EventCreationDelegate {
-    func eventCreationData(eventData : Event)
-}
+import FirebaseDatabase
 
 class EventCreationViewController: UIViewController {
     
@@ -20,6 +17,7 @@ class EventCreationViewController: UIViewController {
             self.mainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         }
     }
+    
     @IBOutlet weak var nameTextField: UITextField! {
         didSet {
             self.nameTextField.delegate = self
@@ -66,7 +64,6 @@ class EventCreationViewController: UIViewController {
     }
     
     // MARK: - Variables
-    var delegate: EventCreationDelegate?
     var eventDetail : Event?
     var isEditingMode = false
     let picker: UIDatePicker = {
@@ -101,21 +98,50 @@ class EventCreationViewController: UIViewController {
             let date = self.dateTextField.text, !date.isEmpty,
             let time = self.timeTextField.text, !time.isEmpty,
             let eventDescription = self.descriptionTextView.text, !eventDescription.isEmpty {
-            let event = Event(title, date, time, eventDescription)
+            var event = Event(title, date, time, eventDescription)
             
             if let _ = self.eventDetail {
-                // UPDATE EVENT
-                // FIXME: - firebase call to update
-                self.navigationController?.popToRootViewController(animated: true)
-            } else {
+                // Edit Event in Firebase and Coredata
+                var dict = [String:Any]()
+                dict["title"] = event.title
+                dict["time"] = event.time
+                dict["date"] = event.date
+                dict["eventDescription"] = event.eventDescription
                 
-                let _ = CoreDataService.save(event: event)
-                // CREATE EVENT
-                // Implement to send data to Firebase;
-                // FIXME: - firebase call to save
-                self.delegate?.eventCreationData(eventData: event)
-                // go back to Home after create a Event
-                self.navigationController?.popViewController(animated: true)
+                if let eventId = self.eventDetail?.id {
+                    Database.database().reference().child("events").child(eventId).setValue(dict)
+                    Database.database().reference().child("events").observe(.value) { (snapshot) in
+                        event.id = eventId
+                        CoreDataService.updateData(object: event)
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+            } else {
+                // Create Event in Firebase and Coredata
+                let reference = Database.database().reference()
+                    .child("events").childByAutoId()
+                
+                var dict = [String:Any]()
+                dict["id"] = reference.key
+                dict["title"] = event.title
+                dict["time"] = event.time
+                dict["date"] = event.date
+                dict["eventDescription"] = event.eventDescription
+                
+                if let key = reference.key {
+                    Database.database().reference().child("events").child(key).setValue(dict)
+                }
+                
+                reference.observeSingleEvent(of: .value) { (snapshot) in
+                    guard let dict = snapshot.value as? [String : Any], let id = dict["id"] as? String else {
+                        return
+                    }
+                    // set ID of event and save in the local database
+                    event.id = id
+                    CoreDataService.save(event: event)
+                    // go back to Home after create a Event
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         } else {
             let alert = UIAlertController(title: "Atenção", message: "Todos os campos são obrigattótios!", preferredStyle: .alert)

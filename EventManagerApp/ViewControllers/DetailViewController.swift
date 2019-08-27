@@ -49,6 +49,10 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backButton = UIBarButtonItem()
+        backButton.tintColor = UIColor.greenLogo
+        self.navigationItem.backBarButtonItem = backButton
+        
         self.title = "Detalhes do Evento"
         
         if let event = self.eventDetail {
