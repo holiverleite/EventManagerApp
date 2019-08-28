@@ -8,6 +8,35 @@
 
 import UIKit
 
+struct StringConstants {
+    // CoreData Attributes
+    static let Id = "id"
+    static let Title = "title"
+    static let Date = "date"
+    static let Time = "time"
+    static let Description = "eventDescription"
+    
+    // CoreData Entity
+    static let EntityName = "EventCoreData"
+    
+    // Node RealtimeDatabase
+    static let mainNode = "events"
+    
+    // Messages
+    static let EmptyEventsMessage = "Você não tem eventos cadastrados. Clique no '+' para criar um novo evento."
+    static let MyEventsMessage = "Meus Eventos"
+    static let EditEventMessage = "Editar Evento"
+    static let CreateEventMessage = "Criar Evento"
+    static let EventDetailMessage = "Detalhes do Evento"
+    static let WarningTitle = "Atenção"
+    static let WarningMessage = "Todos os campos são obrigatórios!"
+    
+    // Buttons
+    static let SaveButton = "Salvar"
+    static let CreateButton = "Criar"
+    static let OkButton = "Ok"
+}
+
 struct ImageConstants {
     static let BackButtonIcon = UIImage(named: "back_button_icon")
 }

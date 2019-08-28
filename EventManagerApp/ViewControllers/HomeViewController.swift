@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var emptyStateMessage: UILabel! {
         didSet {
-            self.emptyStateMessage.text = "Você não tem eventos cadastrados. Clique no '+' para criar um novo evento."
+            self.emptyStateMessage.text = StringConstants.EmptyEventsMessage
             self.emptyStateMessage.textColor = UIColor.greenLogo
         }
     }
@@ -61,26 +61,28 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Try to load all values from Firebase if local database is empty
         if CoreDataService.entityIsEmpty() {
-            Database.database().reference().queryOrdered(byChild: "events").observeSingleEvent(of: .value) { (snapshot) in
+            Database.database().reference().queryOrdered(byChild: StringConstants.mainNode).observeSingleEvent(of: .value) { (snapshot) in
                 guard let dict = snapshot.value as? [String: Any] else {
                     return
                 }
                 
-                if let elements = dict["events"] as? [String:Any] {
+                if let elements = dict[StringConstants.mainNode] as? [String:Any] {
+                    // Get each Event from Firebase and save in the local database
                     for (_,value) in elements {
                         if let eventDict = value as? [String:String] {
-                            guard let id = eventDict["id"],
-                                let title = eventDict["title"],
-                                let date = eventDict["date"],
-                                let time = eventDict["time"],
-                                let descrip = eventDict["eventDescription"] else {
+                            guard let id = eventDict[StringConstants.Id],
+                                let title = eventDict[StringConstants.Title],
+                                let date = eventDict[StringConstants.Date],
+                                let time = eventDict[StringConstants.Time],
+                                let descrip = eventDict[StringConstants.Description] else {
                                     return
                             }
                             
                             var event = Event(title, date, time, descrip)
                             event.id = id
-                            
+                            // Save Event in the Coredata
                             CoreDataService.save(event: event)
                         }
                     }
@@ -94,8 +96,7 @@ class HomeViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.tintColor = UIColor.greenLogo
         self.navigationItem.backBarButtonItem = backButton
-
-        self.title = "Meus Eventos"
+        self.title = StringConstants.MyEventsMessage
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,6 +124,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Delegates
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events.count
@@ -135,9 +137,9 @@ extension HomeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.eventTitleLabel.text = event.value(forKey: "title") as? String
-        cell.dateEventLabel.text = event.value(forKey: "date") as? String
-        cell.timeEventLabel.text = event.value(forKey: "time") as? String
+        cell.eventTitleLabel.text = event.value(forKey: StringConstants.Title) as? String
+        cell.dateEventLabel.text = event.value(forKey: StringConstants.Date) as? String
+        cell.timeEventLabel.text = event.value(forKey: StringConstants.Time) as? String
         
         return cell
     }
@@ -146,11 +148,11 @@ extension HomeViewController: UITableViewDataSource {
         let event = self.events[indexPath.row]
         
         if let detailEvent = StoryboardUtils.getInitialViewController(storyboardEnum: .Detail) as? DetailViewController {
-            guard let title = event.value(forKey: "title") as? String,
-                let id = event.value(forKey: "id") as? String,
-                let date = event.value(forKey: "date") as? String,
-                let time = event.value(forKey: "time") as? String,
-                let eventDescription = event.value(forKey: "eventDescription") as? String else {
+            guard let title = event.value(forKey: StringConstants.Title) as? String,
+                let id = event.value(forKey: StringConstants.Id) as? String,
+                let date = event.value(forKey: StringConstants.Date) as? String,
+                let time = event.value(forKey: StringConstants.Time) as? String,
+                let eventDescription = event.value(forKey: StringConstants.Description) as? String else {
                     return
             }
             
@@ -162,10 +164,11 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // Delete Event when swipe cell to left
         if editingStyle == .delete {
             let event = self.events[indexPath.row]
-            if let eventId = event.value(forKey: "id") as? String {
-                Database.database().reference().child("events").child(eventId).removeValue { error, _ in
+            if let eventId = event.value(forKey: StringConstants.Id) as? String {
+                Database.database().reference().child(StringConstants.mainNode).child(eventId).removeValue { error, _ in
                     CoreDataService.deleteFromDataBase(object: event)
                     
                     self.events.remove(at: indexPath.row)

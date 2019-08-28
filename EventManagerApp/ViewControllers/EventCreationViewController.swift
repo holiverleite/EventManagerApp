@@ -66,9 +66,9 @@ class EventCreationViewController: UIViewController {
     // MARK: - Variables
     var eventDetail : Event?
     var isEditingMode = false
+    
     let picker: UIDatePicker = {
         let datePicker = UIDatePicker()
-        
         return datePicker
     }()
     
@@ -76,6 +76,7 @@ class EventCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // The same ViewController is used to Create and Edit Event
         if isEditingMode {
             if let event = self.eventDetail {
                 self.nameTextField.text = event.title
@@ -84,11 +85,11 @@ class EventCreationViewController: UIViewController {
                 self.descriptionTextView.text = event.eventDescription
             }
             
-            self.createEventButton.setTitle("Salvar", for: .normal)
-            self.title = "Editar Evento"
+            self.createEventButton.setTitle(StringConstants.SaveButton, for: .normal)
+            self.title = StringConstants.EditEventMessage
         } else {
-            self.createEventButton.setTitle("Criar", for: .normal)
-            self.title = "Criar Evento"
+            self.createEventButton.setTitle(StringConstants.CreateButton, for: .normal)
+            self.title = StringConstants.CreateEventMessage
         }
     }
     
@@ -103,47 +104,49 @@ class EventCreationViewController: UIViewController {
             if let _ = self.eventDetail {
                 // Edit Event in Firebase and Coredata
                 var dict = [String:Any]()
-                dict["id"] = self.eventDetail?.id
-                dict["title"] = event.title
-                dict["time"] = event.time
-                dict["date"] = event.date
-                dict["eventDescription"] = event.eventDescription
+                dict[StringConstants.Id] = self.eventDetail?.id
+                dict[StringConstants.Title] = event.title
+                dict[StringConstants.Time] = event.time
+                dict[StringConstants.Date] = event.date
+                dict[StringConstants.Description] = event.eventDescription
                 
                 if let eventId = self.eventDetail?.id {
-                    Database.database().reference().child("events").child(eventId).setValue(dict)
-                    Database.database().reference().child("events").observeSingleEvent(of: .childAdded) { (snapshot) in
+                    Database.database().reference().child(StringConstants.mainNode).child(eventId).setValue(dict)
+                    Database.database().reference().child(StringConstants.mainNode).observeSingleEvent(of: .value) { (snapshot) in
                         event.id = eventId
+                        // Only update in the local database after the Event be updated in the Firebase
                         CoreDataService.updateData(object: event)
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             } else {
                 // Create Event in Firebase and Coredata
-                let reference = Database.database().reference().child("events").childByAutoId()
+                let reference = Database.database().reference().child(StringConstants.mainNode).childByAutoId()
                 
                 var dict = [String:Any]()
-                dict["id"] = reference.key
-                dict["title"] = event.title
-                dict["time"] = event.time
-                dict["date"] = event.date
-                dict["eventDescription"] = event.eventDescription
+                dict[StringConstants.Id] = reference.key
+                dict[StringConstants.Title] = event.title
+                dict[StringConstants.Time] = event.time
+                dict[StringConstants.Date] = event.date
+                dict[StringConstants.Description] = event.eventDescription
                 
                 if let key = reference.key {
-                    Database.database().reference().child("events").child(key).setValue(dict)
+                    Database.database().reference().child(StringConstants.mainNode).child(key).setValue(dict)
                     reference.observeSingleEvent(of: .value) { (snapshot) in
                         guard let dict = snapshot.value as? [String : Any], let id = dict["id"] as? String else {
                             return
                         }
                         event.id = id
+                        // Only save in the local database after the Event be saved in the Firebase
                         CoreDataService.save(event: event)
-                        // go back to Home after create a Event
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
         } else {
-            let alert = UIAlertController(title: "Atenção", message: "Todos os campos são obrigattótios!", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            // Launch Alert if the user let some empty field;
+            let alert = UIAlertController(title: StringConstants.WarningTitle, message: StringConstants.WarningMessage, preferredStyle: .alert)
+            let action = UIAlertAction(title: StringConstants.OkButton, style: .default, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }

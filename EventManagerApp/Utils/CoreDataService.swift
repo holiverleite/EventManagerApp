@@ -11,7 +11,6 @@ import CoreData
 
 class CoreDataService {
     
-    //MARK: - Singleton
     static func getContext() -> NSManagedObjectContext? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil
@@ -22,14 +21,14 @@ class CoreDataService {
     
     static func save(event: Event) {
         if let context = self.getContext() {
-            let entity = NSEntityDescription.entity(forEntityName: "EventCoreData", in: context)!
+            let entity = NSEntityDescription.entity(forEntityName: StringConstants.EntityName, in: context)!
             
             let eventObjectCoreData = NSManagedObject(entity: entity, insertInto: context)
-            eventObjectCoreData.setValue(event.id, forKey: "id")
-            eventObjectCoreData.setValue(event.title, forKey: "title")
-            eventObjectCoreData.setValue(event.date, forKey: "date")
-            eventObjectCoreData.setValue(event.time, forKey: "time")
-            eventObjectCoreData.setValue(event.eventDescription, forKey: "eventDescription")
+            eventObjectCoreData.setValue(event.id, forKey: StringConstants.Id)
+            eventObjectCoreData.setValue(event.title, forKey: StringConstants.Title)
+            eventObjectCoreData.setValue(event.date, forKey: StringConstants.Date)
+            eventObjectCoreData.setValue(event.time, forKey: StringConstants.Time)
+            eventObjectCoreData.setValue(event.eventDescription, forKey: StringConstants.Description)
 
             do {
                 try context.save()
@@ -41,7 +40,7 @@ class CoreDataService {
     
     static func fetchEvents() -> [NSManagedObject] {
         if let context = self.getContext() {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EventCoreData")
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: StringConstants.EntityName)
             
             do {
                 let events = try context.fetch(fetchRequest)
@@ -67,16 +66,16 @@ class CoreDataService {
     
     static func updateData(object: Event) {
         if let context = self.getContext() {
-            let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "EventCoreData")
+            let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: StringConstants.EntityName)
             fetchRequest.predicate = NSPredicate(format: "id = %@", object.id)
             do {
                 let event = try context.fetch(fetchRequest)
                 if let objectUpdate = event[0] as? NSManagedObject {
-                    objectUpdate.setValue(object.id, forKey: "id")
-                    objectUpdate.setValue(object.title, forKey: "title")
-                    objectUpdate.setValue(object.date, forKey: "date")
-                    objectUpdate.setValue(object.time, forKey: "time")
-                    objectUpdate.setValue(object.eventDescription, forKey: "eventDescription")
+                    objectUpdate.setValue(object.id, forKey: StringConstants.Id)
+                    objectUpdate.setValue(object.title, forKey: StringConstants.Title)
+                    objectUpdate.setValue(object.date, forKey: StringConstants.Date)
+                    objectUpdate.setValue(object.time, forKey: StringConstants.Time)
+                    objectUpdate.setValue(object.eventDescription, forKey: StringConstants.Description)
                     do {
                         try context.save()
                     } catch let error as NSError {
@@ -91,7 +90,7 @@ class CoreDataService {
     
     static func entityIsEmpty() -> Bool {
         if let context = self.getContext() {
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EventCoreData")
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: StringConstants.EntityName)
             
             do {
                 let events = try context.fetch(fetchRequest)

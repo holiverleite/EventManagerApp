@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
         backButton.tintColor = UIColor.greenLogo
         self.navigationItem.backBarButtonItem = backButton
         
-        self.title = "Detalhes do Evento"
+        self.title = StringConstants.EventDetailMessage
         
         if let event = self.eventDetail {
             self.titleLabel.text = event.title
