@@ -28,6 +28,7 @@ struct StringConstants {
     static let EditEventMessage = "Editar Evento"
     static let CreateEventMessage = "Criar Evento"
     static let EventDetailMessage = "Detalhes do Evento"
+    static let AboutMessage = "Sobre"
     static let WarningTitle = "Atenção"
     static let WarningMessage = "Todos os campos são obrigatórios!"
     
@@ -35,10 +36,6 @@ struct StringConstants {
     static let SaveButton = "Salvar"
     static let CreateButton = "Criar"
     static let OkButton = "Ok"
-}
-
-struct ImageConstants {
-    static let BackButtonIcon = UIImage(named: "back_button_icon")
 }
 
 extension UIColor {

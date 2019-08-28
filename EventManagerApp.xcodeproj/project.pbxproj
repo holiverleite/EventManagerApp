@@ -22,6 +22,8 @@
 		621E401E23119C4E00CA34A9 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */; };
 		621E40212311F63D00CA34A9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E40202311F63D00CA34A9 /* Constants.swift */; };
 		9436219D231460E800F34501 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9436219C231460E800F34501 /* CoreDataService.swift */; };
+		94CB43152316FD6D008925DE /* InfoAboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CB43132316FD6D008925DE /* InfoAboutAppViewController.swift */; };
+		94CB43182316FDAA008925DE /* InfoAboutApp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94CB43172316FDAA008925DE /* InfoAboutApp.storyboard */; };
 		94F821422315460600DE93D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94F821412315460600DE93D2 /* GoogleService-Info.plist */; };
 		C20BB02E0E69B631EB32E4AB /* Pods_EventManagerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2015E4A32C1EC13766A3D0 /* Pods_EventManagerApp.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +46,8 @@
 		621E401C23119C4E00CA34A9 /* EventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		621E40202311F63D00CA34A9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9436219C231460E800F34501 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		94CB43132316FD6D008925DE /* InfoAboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutAppViewController.swift; sourceTree = "<group>"; };
+		94CB43172316FDAA008925DE /* InfoAboutApp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InfoAboutApp.storyboard; sourceTree = "<group>"; };
 		94F821412315460600DE93D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B764D8F6E2A33F58BF363015 /* Pods-EventManagerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventManagerApp.release.xcconfig"; path = "Target Support Files/Pods-EventManagerApp/Pods-EventManagerApp.release.xcconfig"; sourceTree = "<group>"; };
 		BF2015E4A32C1EC13766A3D0 /* Pods_EventManagerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventManagerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +117,7 @@
 				621E400E2311487800CA34A9 /* EventCreation.storyboard */,
 				621E401723115C9500CA34A9 /* Detail.storyboard */,
 				621E40052311429100CA34A9 /* LaunchScreen.storyboard */,
+				94CB43172316FDAA008925DE /* InfoAboutApp.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				621E3FFB2311428F00CA34A9 /* HomeViewController.swift */,
 				621E40102311489C00CA34A9 /* EventCreationViewController.swift */,
 				621E401523115C6D00CA34A9 /* DetailViewController.swift */,
+				94CB43132316FD6D008925DE /* InfoAboutAppViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +225,7 @@
 				621E400F2311487800CA34A9 /* EventCreation.storyboard in Resources */,
 				621E401823115C9500CA34A9 /* Detail.storyboard in Resources */,
 				621E3FFF2311428F00CA34A9 /* Home.storyboard in Resources */,
+				94CB43182316FDAA008925DE /* InfoAboutApp.storyboard in Resources */,
 				94F821422315460600DE93D2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +290,7 @@
 			files = (
 				621E40022311428F00CA34A9 /* EventManagerApp.xcdatamodeld in Sources */,
 				621E4014231149A800CA34A9 /* StoryboardUtils.swift in Sources */,
+				94CB43152316FD6D008925DE /* InfoAboutAppViewController.swift in Sources */,
 				621E3FFC2311428F00CA34A9 /* HomeViewController.swift in Sources */,
 				621E401623115C6D00CA34A9 /* DetailViewController.swift in Sources */,
 				621E401D23119C4E00CA34A9 /* EventTableViewCell.swift in Sources */,

@@ -54,12 +54,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nmu-No-T2i">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="info_button_con" id="V3r-EF-yk2"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="A9k-pB-vMb"/>
                     </navigationItem>
                     <connections>
                         <outlet property="createEventButton" destination="A9k-pB-vMb" id="Mg0-iu-ARo"/>
                         <outlet property="emptyStateMessage" destination="uYA-gv-0SS" id="R8g-Um-c5T"/>
                         <outlet property="emptyStateView" destination="Jpm-1C-ckG" id="UH4-KS-NWk"/>
+                        <outlet property="infoButton" destination="V3r-EF-yk2" id="Y7Q-mU-0wt"/>
                         <outlet property="tableView" destination="62f-K5-or4" id="Ozn-9m-KyG"/>
                     </connections>
                 </viewController>
@@ -84,4 +86,7 @@
             <point key="canvasLocation" x="-226" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info_button_con" width="24" height="24"/>
+    </resources>
 </document>

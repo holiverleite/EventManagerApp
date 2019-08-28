@@ -36,6 +36,14 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var infoButton: UIBarButtonItem! {
+        didSet {
+            self.infoButton.target = self
+            self.infoButton.action = #selector(self.showInfoApp)
+            self.infoButton.tintColor = UIColor.greenLogo
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             self.tableView.dataSource = self
@@ -109,6 +117,12 @@ class HomeViewController: UIViewController {
     @objc private func createEventAction() {
         if let eventCreationViewController = StoryboardUtils.getInitialViewController(storyboardEnum: .EventCreation) as? EventCreationViewController {
             self.navigationController?.pushViewController(eventCreationViewController, animated: true)
+        }
+    }
+    
+    @objc private func showInfoApp() {
+        if let viewController = StoryboardUtils.getInitialViewController(storyboardEnum: .InfoApp) as? InfoAboutAppViewController {
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     

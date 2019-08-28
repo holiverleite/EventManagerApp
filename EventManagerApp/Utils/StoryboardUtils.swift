@@ -13,6 +13,7 @@ class StoryboardUtils {
     public enum Storyboards: String {
         case EventCreation = "EventCreation"
         case Detail = "Detail"
+        case InfoApp = "InfoAboutApp"
     }
     
     public static func getInitialViewController(storyboardEnum: StoryboardUtils.Storyboards) -> UIViewController {
