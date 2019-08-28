@@ -111,7 +111,7 @@ class EventCreationViewController: UIViewController {
                 
                 if let eventId = self.eventDetail?.id {
                     Database.database().reference().child("events").child(eventId).setValue(dict)
-                    Database.database().reference().child("events").observe(.value) { (snapshot) in
+                    Database.database().reference().child("events").observeSingleEvent(of: .childAdded) { (snapshot) in
                         event.id = eventId
                         CoreDataService.updateData(object: event)
                         self.navigationController?.popToRootViewController(animated: true)
@@ -119,8 +119,7 @@ class EventCreationViewController: UIViewController {
                 }
             } else {
                 // Create Event in Firebase and Coredata
-                let reference = Database.database().reference()
-                    .child("events").childByAutoId()
+                let reference = Database.database().reference().child("events").childByAutoId()
                 
                 var dict = [String:Any]()
                 dict["id"] = reference.key
@@ -131,17 +130,15 @@ class EventCreationViewController: UIViewController {
                 
                 if let key = reference.key {
                     Database.database().reference().child("events").child(key).setValue(dict)
-                }
-                
-                reference.observeSingleEvent(of: .value) { (snapshot) in
-                    guard let dict = snapshot.value as? [String : Any], let id = dict["id"] as? String else {
-                        return
+                    reference.observeSingleEvent(of: .value) { (snapshot) in
+                        guard let dict = snapshot.value as? [String : Any], let id = dict["id"] as? String else {
+                            return
+                        }
+                        event.id = id
+                        CoreDataService.save(event: event)
+                        // go back to Home after create a Event
+                        self.navigationController?.popViewController(animated: true)
                     }
-                    // set ID of event and save in the local database
-                    event.id = id
-                    CoreDataService.save(event: event)
-                    // go back to Home after create a Event
-                    self.navigationController?.popViewController(animated: true)
                 }
             }
         } else {

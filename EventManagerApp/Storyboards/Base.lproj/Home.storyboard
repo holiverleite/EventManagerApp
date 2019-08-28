@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vc Não tem eventos criados. Mudar esse texto" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYA-gv-0SS">
-                                        <rect key="frame" x="11" y="305" width="355" height="20.5"/>
+                                        <rect key="frame" x="30" y="294.5" width="315" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -35,7 +35,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="uYA-gv-0SS" firstAttribute="centerY" secondItem="Jpm-1C-ckG" secondAttribute="centerY" constant="13.5" id="DGn-nC-fbe"/>
-                                    <constraint firstItem="uYA-gv-0SS" firstAttribute="centerX" secondItem="Jpm-1C-ckG" secondAttribute="centerX" constant="1" id="ncZ-Th-0xW"/>
+                                    <constraint firstAttribute="trailing" secondItem="uYA-gv-0SS" secondAttribute="trailing" constant="30" id="QWK-3e-cz2"/>
+                                    <constraint firstItem="uYA-gv-0SS" firstAttribute="leading" secondItem="Jpm-1C-ckG" secondAttribute="leading" constant="30" id="uFX-LM-hf4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -57,6 +58,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="createEventButton" destination="A9k-pB-vMb" id="Mg0-iu-ARo"/>
+                        <outlet property="emptyStateMessage" destination="uYA-gv-0SS" id="R8g-Um-c5T"/>
                         <outlet property="emptyStateView" destination="Jpm-1C-ckG" id="UH4-KS-NWk"/>
                         <outlet property="tableView" destination="62f-K5-or4" id="Ozn-9m-KyG"/>
                     </connections>

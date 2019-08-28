@@ -47,24 +47,22 @@ class HomeViewController: UIViewController {
     }
     
     @IBOutlet weak var emptyStateView: UIView!
+    @IBOutlet weak var emptyStateMessage: UILabel! {
+        didSet {
+            self.emptyStateMessage.text = "Você não tem eventos cadastrados. Clique no '+' para criar um novo evento."
+            self.emptyStateMessage.textColor = UIColor.greenLogo
+        }
+    }
     
     // MARK: - Variables
-    var events: [NSManagedObject] = []
-    var listener: UInt? = nil
+    private var events: [NSManagedObject] = []
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.listener = Database.database().reference().observe(.childChanged, with: { (snapshot) in
-//          Load all events from CoreData
-            self.events.removeAll()
-            self.events = CoreDataService.fetchEvents()
-            self.tableView.reloadData()
-        })
-        
         if CoreDataService.entityIsEmpty() {
-            Database.database().reference().queryOrdered(byChild: "events").observe(.value) { (snapshot) in
+            Database.database().reference().queryOrdered(byChild: "events").observeSingleEvent(of: .value) { (snapshot) in
                 guard let dict = snapshot.value as? [String: Any] else {
                     return
                 }
@@ -79,17 +77,18 @@ class HomeViewController: UIViewController {
                                 let descrip = eventDict["eventDescription"] else {
                                     return
                             }
+                            
                             var event = Event(title, date, time, descrip)
                             event.id = id
                             
                             CoreDataService.save(event: event)
                         }
                     }
-                    self.events.removeAll()
-                    self.events = CoreDataService.fetchEvents()
-                    self.tableView.reloadData()
+                    self.reloadTableViewContent()
                 }
             }
+        } else {
+            self.reloadTableViewContent()
         }
         
         let backButton = UIBarButtonItem()
@@ -102,9 +101,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.verifyHomeViewState()
-        self.tableView.reloadData()
-        // Update tableView always when appear
+        self.reloadTableViewContent()
     }
     
     // MARK: - Methods
@@ -114,8 +111,15 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func verifyHomeViewState() {
+    private func verifyHomeViewState() {
         (self.events.count > 0) ? (self.emptyStateView.isHidden = true) : (self.emptyStateView.isHidden = false)
+    }
+    
+    private func reloadTableViewContent() {
+        self.events.removeAll()
+        self.events = CoreDataService.fetchEvents()
+        self.verifyHomeViewState()
+        self.tableView.reloadData()
     }
 }
 
